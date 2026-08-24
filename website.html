@@ -1,0 +1,835 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Night - Horror Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #050505;
+            color: white;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d00000;
+            text-shadow: 0 0 15px red;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: red;
+            text-shadow: 0 0 10px red;
+        }
+
+        /* HOME */
+        .home {
+            height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.85)),
+                url("https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=1920&q=80");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .home-content h1 {
+            font-size: 75px;
+            color: #fff;
+            text-shadow: 0 0 20px red, 0 0 40px black;
+        }
+
+        .home-content p {
+            font-size: 22px;
+            margin: 20px 0;
+            color: #ddd;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #8b0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: red;
+            box-shadow: 0 0 20px red;
+        }
+
+        /* COMMON SECTION */
+        section {
+            padding: 90px 8%;
+            min-height: 80vh;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title h2 {
+            font-size: 45px;
+            color: #d00000;
+            text-shadow: 0 0 15px red;
+        }
+
+        .title p {
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        /* STORIES */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #111;
+            padding: 30px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: red;
+            box-shadow: 0 0 20px rgba(255,0,0,.3);
+        }
+
+        .card h3 {
+            color: #e00000;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            filter: grayscale(80%);
+            transition: .4s;
+        }
+
+        .gallery img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.04);
+            box-shadow: 0 0 20px red;
+        }
+
+        /* ABOUT */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: #aaa;
+            line-height: 2;
+            font-size: 18px;
+        }
+
+        /* CONTACT */
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #111;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: red;
+            box-shadow: 0 0 10px rgba(255,0,0,.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: #8b0000;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: red;
+            box-shadow: 0 0 15px red;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #000;
+            color: #777;
+            border-top: 1px solid #222;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+            }
+
+            .home-content h1 {
+                font-size: 45px;
+            }
+
+            .cards,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">DARK NIGHT</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#stories">Stories</a></li>
+            <li><a href="#gallery">Photos</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HOME -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>WELCOME TO DARK NIGHT</h1>
+            <p>Enter the world of mystery, darkness and horror...</p>
+
+            <a href="#stories" class="btn">ENTER IF YOU DARE</a>
+        </div>
+    </section>
+
+
+    <!-- STORIES -->
+    <section id="stories">
+
+        <div class="title">
+            <h2>HORROR STORIES</h2>
+            <p>Some stories are better left untold...</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>The Abandoned House</h3>
+                <p>
+                    An old house stood alone at the end of the road.
+                    Nobody entered it after sunset.
+                    But every night, a light appeared in its upper window.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>The Dark Forest</h3>
+                <p>
+                    People who entered the forest at night often heard
+                    footsteps behind them. The strange thing was...
+                    nobody was ever there.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>The Midnight Door</h3>
+                <p>
+                    At exactly midnight, a mysterious door appeared
+                    inside an empty room. Nobody knew where it came from.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- GALLERY -->
+    <section id="gallery">
+
+        <div class="title">
+            <h2>HORROR GALLERY</h2>
+            <p>Explore the darkness...</p>
+        </div>
+
+        <div class="gallery">
+
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1505635552518-3448ff116af3?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1475070929565-c985b496cb9f?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80">
+
+        </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <div class="title">
+            <h2>ABOUT US</h2>
+        </div>
+
+        <div class="about">
+
+            <p>
+                Welcome to Dark Night — a fictional horror-themed website
+                created for lovers of mystery, scary stories and dark
+                atmosphere. Explore our stories, view the gallery and
+                enter the world of darkness.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <div class="title">
+            <h2>CONTACT</h2>
+            <p>Send us a message...</p>
+        </div>
+
+        <form>
+
+            <input type="text" placeholder="Your Name" required>
+
+            <input type="email" placeholder="Your Email" required>
+
+            <textarea placeholder="Your Message"></textarea>
+
+            <button type="submit">SEND MESSAGE</button>
+
+        </form>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Dark Night | Horror Website
+    </footer>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Night - Horror Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #050505;
+            color: white;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d00000;
+            text-shadow: 0 0 15px red;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: red;
+            text-shadow: 0 0 10px red;
+        }
+
+        /* HOME */
+        .home {
+            height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.85)),
+                url("https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=1920&q=80");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .home-content h1 {
+            font-size: 75px;
+            color: #fff;
+            text-shadow: 0 0 20px red, 0 0 40px black;
+        }
+
+        .home-content p {
+            font-size: 22px;
+            margin: 20px 0;
+            color: #ddd;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #8b0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: red;
+            box-shadow: 0 0 20px red;
+        }
+
+        /* COMMON SECTION */
+        section {
+            padding: 90px 8%;
+            min-height: 80vh;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title h2 {
+            font-size: 45px;
+            color: #d00000;
+            text-shadow: 0 0 15px red;
+        }
+
+        .title p {
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        /* STORIES */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #111;
+            padding: 30px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: red;
+            box-shadow: 0 0 20px rgba(255,0,0,.3);
+        }
+
+        .card h3 {
+            color: #e00000;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            filter: grayscale(80%);
+            transition: .4s;
+        }
+
+        .gallery img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.04);
+            box-shadow: 0 0 20px red;
+        }
+
+        /* ABOUT */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: #aaa;
+            line-height: 2;
+            font-size: 18px;
+        }
+
+        /* CONTACT */
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #111;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: red;
+            box-shadow: 0 0 10px rgba(255,0,0,.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: #8b0000;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: red;
+            box-shadow: 0 0 15px red;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #000;
+            color: #777;
+            border-top: 1px solid #222;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+            }
+
+            .home-content h1 {
+                font-size: 45px;
+            }
+
+            .cards,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">DARK NIGHT</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#stories">Stories</a></li>
+            <li><a href="#gallery">Photos</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HOME -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>WELCOME TO DARK NIGHT</h1>
+            <p>Enter the world of mystery, darkness and horror...</p>
+
+            <a href="#stories" class="btn">ENTER IF YOU DARE</a>
+        </div>
+    </section>
+
+
+    <!-- STORIES -->
+    <section id="stories">
+
+        <div class="title">
+            <h2>HORROR STORIES</h2>
+            <p>Some stories are better left untold...</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>The Abandoned House</h3>
+                <p>
+                    An old house stood alone at the end of the road.
+                    Nobody entered it after sunset.
+                    But every night, a light appeared in its upper window.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>The Dark Forest</h3>
+                <p>
+                    People who entered the forest at night often heard
+                    footsteps behind them. The strange thing was...
+                    nobody was ever there.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>The Midnight Door</h3>
+                <p>
+                    At exactly midnight, a mysterious door appeared
+                    inside an empty room. Nobody knew where it came from.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- GALLERY -->
+    <section id="gallery">
+
+        <div class="title">
+            <h2>HORROR GALLERY</h2>
+            <p>Explore the darkness...</p>
+        </div>
+
+        <div class="gallery">
+
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1505635552518-3448ff116af3?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1475070929565-c985b496cb9f?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80">
+
+        </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <div class="title">
+            <h2>ABOUT US</h2>
+        </div>
+
+        <div class="about">
+
+            <p>
+                Welcome to Dark Night — a fictional horror-themed website
+                created for lovers of mystery, scary stories and dark
+                atmosphere. Explore our stories, view the gallery and
+                enter the world of darkness.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <div class="title">
+            <h2>CONTACT</h2>
+            <p>Send us a message...</p>
+        </div>
+
+        <form>
+
+            <input type="text" placeholder="Your Name" required>
+
+            <input type="email" placeholder="Your Email" required>
+
+            <textarea placeholder="Your Message"></textarea>
+
+            <button type="submit">SEND MESSAGE</button>
+
+        </form>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Dark Night | Horror Website
+    </footer>
+
+</body>
+</html>
