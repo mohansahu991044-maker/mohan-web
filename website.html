@@ -1,835 +1,762 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Night - Horror Website</title>
-
+    <title>BESAN - Pure Goodness Always</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            yellow: '#F59E0B',
+                            yellowLight: '#FEF3C7',
+                            yellowHover: '#D97706',
+                            green: '#16A34A',
+                            greenDark: '#15803D',
+                            cream: '#FAF8F5',
+                            creamDark: '#121212',
+                            cardDark: '#1E1E1E'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: Arial, sans-serif;
-            background: #050505;
-            color: white;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            border-bottom: 1px solid #333;
+        .custom-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
         }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #d00000;
-            text-shadow: 0 0 15px red;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: red;
-            text-shadow: 0 0 10px red;
-        }
-
-        /* HOME */
-        .home {
-            height: 100vh;
-            background:
-                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.85)),
-                url("https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=1920&q=80");
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .home-content h1 {
-            font-size: 75px;
-            color: #fff;
-            text-shadow: 0 0 20px red, 0 0 40px black;
-        }
-
-        .home-content p {
-            font-size: 22px;
-            margin: 20px 0;
-            color: #ddd;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background: #8b0000;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: .3s;
-        }
-
-        .btn:hover {
-            background: red;
-            box-shadow: 0 0 20px red;
-        }
-
-        /* COMMON SECTION */
-        section {
-            padding: 90px 8%;
-            min-height: 80vh;
-        }
-
-        .title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .title h2 {
-            font-size: 45px;
-            color: #d00000;
-            text-shadow: 0 0 15px red;
-        }
-
-        .title p {
-            color: #aaa;
-            margin-top: 10px;
-        }
-
-        /* STORIES */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .card {
-            background: #111;
-            padding: 30px;
-            border: 1px solid #333;
-            border-radius: 10px;
-            transition: .3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: red;
-            box-shadow: 0 0 20px rgba(255,0,0,.3);
-        }
-
-        .card h3 {
-            color: #e00000;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: #aaa;
-            line-height: 1.7;
-        }
-
-        /* GALLERY */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            filter: grayscale(80%);
-            transition: .4s;
-        }
-
-        .gallery img:hover {
-            filter: grayscale(0%);
-            transform: scale(1.04);
-            box-shadow: 0 0 20px red;
-        }
-
-        /* ABOUT */
-        .about {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .about p {
-            color: #aaa;
-            line-height: 2;
-            font-size: 18px;
-        }
-
-        /* CONTACT */
-        form {
-            max-width: 600px;
-            margin: auto;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: #111;
-            color: white;
-            border: 1px solid #444;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        textarea {
-            height: 150px;
-            resize: none;
-        }
-
-        input:focus,
-        textarea:focus {
-            border-color: red;
-            box-shadow: 0 0 10px rgba(255,0,0,.3);
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            background: #8b0000;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background: red;
-            box-shadow: 0 0 15px red;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: #000;
-            color: #777;
-            border-top: 1px solid #222;
-        }
-
-        /* RESPONSIVE */
-        @media(max-width: 800px) {
-
-            nav {
-                padding: 15px 5%;
-            }
-
-            nav ul {
-                gap: 12px;
-            }
-
-            nav ul li a {
-                font-size: 13px;
-            }
-
-            .home-content h1 {
-                font-size: 45px;
-            }
-
-            .cards,
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 70px 5%;
-            }
+        .recipe-card:hover img {
+            transform: scale(1.08);
         }
     </style>
 </head>
+<body class="bg-[#FAF8F5] dark:bg-[#121212] text-gray-800 dark:text-gray-100 min-h-screen flex flex-col justify-between">
 
-<body>
-
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">DARK NIGHT</div>
-
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#stories">Stories</a></li>
-            <li><a href="#gallery">Photos</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-
-    <!-- HOME -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h1>WELCOME TO DARK NIGHT</h1>
-            <p>Enter the world of mystery, darkness and horror...</p>
-
-            <a href="#stories" class="btn">ENTER IF YOU DARE</a>
+    <!-- Top Utility Bar -->
+    <div class="bg-gray-900 text-gray-300 text-xs py-2 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center space-x-1">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>+91 99104492XX</span>
+                </span>
+                <span class="hidden sm:flex items-center space-x-1">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>mohansahu99104492@gmail.com</span>
+                </span>
+                <span class="hidden md:flex items-center space-x-1">
+                    <i data-lucide="truck" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>Pan India Delivery</span>
+                </span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button id="themeToggleBtn" class="flex items-center bg-gray-800 hover:bg-gray-700 text-amber-400 px-3 py-1 rounded-full text-xs transition border border-gray-700">
+                    <i data-lucide="sun" class="w-3.5 h-3.5 mr-1 hidden dark:inline"></i>
+                    <i data-lucide="moon" class="w-3.5 h-3.5 mr-1 inline dark:hidden"></i>
+                    <span id="themeToggleText">Dark Mode</span>
+                </button>
+            </div>
         </div>
-    </section>
+    </div>
 
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 dark:bg-[#1A1A1A]/95 backdrop-blur-md shadow-sm border-b border-amber-100 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center space-x-2">
+                <div class="bg-gradient-to-tr from-amber-500 to-amber-400 p-2 rounded-xl text-white shadow-md">
+                    <i data-lucide="wheat" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black tracking-tight text-gray-900 dark:text-white flex items-center">
+                        BESAN <span class="text-amber-500 text-xs font-semibold ml-1 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full">PURE</span>
+                    </h1>
+                    <p class="text-[10px] tracking-widest text-amber-600 dark:text-amber-400 font-bold uppercase -mt-1">Pure Goodness Always</p>
+                </div>
+            </a>
 
-    <!-- STORIES -->
-    <section id="stories">
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-7 font-medium text-sm text-gray-700 dark:text-gray-200">
+                <a href="#home" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Home</a>
+                <a href="#about" class="hover:text-amber-600 dark:hover:text-amber-400 transition">About</a>
+                <a href="#products" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Products</a>
+                <a href="#recipes" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Recipes</a>
+                <a href="#benefits" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Benefits</a>
+                <a href="#contact" class="hover:text-amber-600 dark:hover:text-amber-400 transition">Contact</a>
+            </nav>
 
-        <div class="title">
-            <h2>HORROR STORIES</h2>
-            <p>Some stories are better left untold...</p>
+            <!-- CTA & Cart Icons -->
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleCartDrawer()" class="relative p-2 text-gray-700 dark:text-gray-200 hover:bg-amber-50 dark:hover:bg-gray-800 rounded-full transition">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-amber-500 text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-900">0</span>
+                </button>
+                <a href="#products" class="hidden sm:flex items-center space-x-1 bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold px-4 py-2 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                    <span>Order Now</span>
+                </a>
+                <a href="https://wa.me/919910449200" target="_blank" class="flex items-center space-x-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-4 py-2 rounded-xl shadow-md transition transform hover:-translate-y-0.5 text-sm">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span class="hidden md:inline">Chat on WhatsApp</span>
+                </a>
+            </div>
         </div>
+    </header>
 
-        <div class="cards">
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden py-12 lg:py-16 bg-gradient-to-b from-amber-50/70 via-white to-transparent dark:from-gray-900 dark:via-gray-900 dark:to-[#121212]">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Hero Text Content -->
+            <div class="lg:col-span-6 space-y-6 text-left">
+                <div class="inline-flex items-center space-x-2 bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700/50 text-amber-800 dark:text-amber-300 text-xs px-3 py-1 rounded-full font-medium">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>100% Pure & Organic Chana Dal</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl xl:text-6xl font-black text-gray-900 dark:text-white leading-tight">
+                    Pure <span class="text-amber-500">BESAN</span><br>
+                    <span class="text-2xl md:text-3xl xl:text-4xl font-bold text-gray-800 dark:text-gray-200">For a Healthier Tomorrow</span>
+                </h1>
 
-            <div class="card">
-                <h3>The Abandoned House</h3>
-                <p>
-                    An old house stood alone at the end of the road.
-                    Nobody entered it after sunset.
-                    But every night, a light appeared in its upper window.
+                <p class="text-gray-600 dark:text-gray-300 text-base md:text-lg max-w-xl">
+                    Finest quality gram flour made from 100% chana dal, packed with nutrition, tradition and taste. Enjoy unadulterated purity in every dish.
                 </p>
+
+                <!-- 4 Badges Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-2">
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-amber-100 dark:border-gray-700 text-center flex flex-col items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-1">
+                            <i data-lucide="leaf" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-semibold">100% Natural</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-amber-100 dark:border-gray-700 text-center flex flex-col items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-1">
+                            <i data-lucide="zap" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-semibold">Rich in Protein</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-amber-100 dark:border-gray-700 text-center flex flex-col items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-1">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-semibold">No Preservatives</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-amber-100 dark:border-gray-700 text-center flex flex-col items-center justify-center shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-1">
+                            <i data-lucide="package-check" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-semibold">Hygienically Packed</span>
+                    </div>
+                </div>
+
+                <!-- Action CTAs -->
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="#products" class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center space-x-2">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <span>Shop Now</span>
+                    </a>
+                    <a href="https://wa.me/919910449200" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center space-x-2">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        <span>Chat on WhatsApp</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="card">
-                <h3>The Dark Forest</h3>
-                <p>
-                    People who entered the forest at night often heard
-                    footsteps behind them. The strange thing was...
-                    nobody was ever there.
-                </p>
+            <!-- Hero Banner Image Card -->
+            <div class="lg:col-span-6 relative flex justify-center">
+                <div class="relative w-full max-w-lg bg-gradient-to-br from-amber-400 to-amber-600 rounded-3xl p-6 shadow-2xl text-white overflow-hidden">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                    <div class="relative z-10 flex flex-col items-center text-center">
+                        <!-- Custom Product Mockup Container -->
+                        <div class="relative w-64 h-72 bg-amber-300/30 rounded-2xl border-2 border-white/40 backdrop-blur-sm p-4 flex flex-col justify-between items-center shadow-xl my-4">
+                            <div class="text-center">
+                                <span class="bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">100% Chana Dal</span>
+                                <h3 class="text-2xl font-black tracking-tight text-amber-950 mt-1">BESAN</h3>
+                                <p class="text-xs text-amber-900 font-semibold tracking-wider">PREMIUM GRAM FLOUR</p>
+                            </div>
+
+                            <div class="w-28 h-28 bg-amber-200 rounded-full border-4 border-amber-100 flex items-center justify-center shadow-inner my-2">
+                                <div class="text-center">
+                                    <i data-lucide="wheat" class="w-10 h-10 text-amber-800 mx-auto"></i>
+                                    <span class="text-[9px] font-bold text-amber-950 block">PURE & NATURAL</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-950/80 text-amber-200 text-xs px-3 py-1 rounded-md font-bold w-full">
+                                NET WT. 1 kg
+                            </div>
+                        </div>
+
+                        <p class="font-serif italic text-amber-100 text-lg mt-2 font-medium">"Goodness in Every Grain"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Highlights Bar -->
+    <section class="bg-amber-100/80 dark:bg-gray-800 border-y border-amber-200 dark:border-gray-700 py-4">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+            <div class="flex items-center justify-center space-x-2 text-gray-800 dark:text-gray-200">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+                <span class="text-xs md:text-sm font-semibold">100% Chana Dal</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2 text-gray-800 dark:text-gray-200">
+                <i data-lucide="heart" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+                <span class="text-xs md:text-sm font-semibold">High in Protein</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2 text-gray-800 dark:text-gray-200">
+                <i data-lucide="shield" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+                <span class="text-xs md:text-sm font-semibold">No Preservatives</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2 text-gray-800 dark:text-gray-200">
+                <i data-lucide="star" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+                <span class="text-xs md:text-sm font-semibold">Premium Quality</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2 text-gray-800 dark:text-gray-200">
+                <i data-lucide="sparkle" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+                <span class="text-xs md:text-sm font-semibold">Naturally Nutritious</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2 text-gray-800 dark:text-gray-200">
+                <i data-lucide="smile" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+                <span class="text-xs md:text-sm font-semibold">Great Taste</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 max-w-7xl mx-auto px-4 md:px-8">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white">Our Products</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Choose from our range of premium BESAN packs</p>
+            </div>
+            <a href="#products" class="text-amber-600 dark:text-amber-400 font-semibold text-sm hover:underline flex items-center">
+                <span>View All Products</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Product Grid Cards (8 cols) -->
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                
+                <!-- Product 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-amber-100 dark:border-gray-700 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div class="bg-amber-50 dark:bg-gray-900 rounded-xl p-4 text-center mb-3">
+                        <img src="https://placehold.co/200x220/f59e0b/ffffff?text=BESAN+500g" alt="BESAN 500g" class="mx-auto rounded-lg h-36 object-cover shadow-sm">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white text-center">BESAN 500g</h3>
+                        <div class="text-xl font-extrabold text-amber-600 dark:text-amber-400 text-center my-2">₹60</div>
+                    </div>
+                    <button onclick="addToCart('BESAN 500g', 60)" class="w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-2 rounded-xl text-sm transition shadow">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-amber-100 dark:border-gray-700 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div class="bg-amber-50 dark:bg-gray-900 rounded-xl p-4 text-center mb-3">
+                        <img src="https://placehold.co/200x220/f59e0b/ffffff?text=BESAN+1kg" alt="BESAN 1kg" class="mx-auto rounded-lg h-36 object-cover shadow-sm">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white text-center">BESAN 1kg</h3>
+                        <div class="text-xl font-extrabold text-amber-600 dark:text-amber-400 text-center my-2">₹110</div>
+                    </div>
+                    <button onclick="addToCart('BESAN 1kg', 110)" class="w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-2 rounded-xl text-sm transition shadow">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-amber-100 dark:border-gray-700 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div class="bg-amber-50 dark:bg-gray-900 rounded-xl p-4 text-center mb-3">
+                        <img src="https://placehold.co/200x220/f59e0b/ffffff?text=BESAN+5kg" alt="BESAN 5kg" class="mx-auto rounded-lg h-36 object-cover shadow-sm">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white text-center">BESAN 5kg</h3>
+                        <div class="text-xl font-extrabold text-amber-600 dark:text-amber-400 text-center my-2">₹520</div>
+                    </div>
+                    <button onclick="addToCart('BESAN 5kg', 520)" class="w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-2 rounded-xl text-sm transition shadow">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-amber-100 dark:border-gray-700 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div class="bg-amber-50 dark:bg-gray-900 rounded-xl p-4 text-center mb-3">
+                        <img src="https://placehold.co/200x220/f59e0b/ffffff?text=BESAN+10kg" alt="BESAN 10kg" class="mx-auto rounded-lg h-36 object-cover shadow-sm">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white text-center">BESAN 10kg</h3>
+                        <div class="text-xl font-extrabold text-amber-600 dark:text-amber-400 text-center my-2">₹980</div>
+                    </div>
+                    <button onclick="addToCart('BESAN 10kg', 980)" class="w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-2 rounded-xl text-sm transition shadow">
+                        Add to Cart
+                    </button>
+                </div>
+
             </div>
 
-            <div class="card">
-                <h3>The Midnight Door</h3>
-                <p>
-                    At exactly midnight, a mysterious door appeared
-                    inside an empty room. Nobody knew where it came from.
-                </p>
+            <!-- Side Card Feature Banner (4 cols) -->
+            <div class="lg:col-span-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border border-amber-200 dark:border-gray-700 flex flex-col justify-between shadow-sm">
+                <div>
+                    <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white mb-2">Made From<br><span class="text-amber-600 dark:text-amber-400">The Best Chana Dal</span></h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">
+                        We use high-quality chana dal to bring you pure, fresh and finely ground besan for your daily meals.
+                    </p>
+
+                    <ul class="space-y-3 text-sm font-semibold text-gray-800 dark:text-gray-200">
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="check" class="w-5 h-5 text-emerald-600"></i>
+                            <span>Pure & Natural</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="check" class="w-5 h-5 text-emerald-600"></i>
+                            <span>Rich in Nutrition</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="check" class="w-5 h-5 text-emerald-600"></i>
+                            <span>Ideal for Everyday Cooking</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="check" class="w-5 h-5 text-emerald-600"></i>
+                            <span>Trusted by Families</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-6 rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80" alt="Chana Dal Bowl" class="w-full h-40 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delicious Dishes Section -->
+    <section id="recipes" class="py-16 bg-white dark:bg-[#1A1A1A] border-y border-amber-100 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white">Delicious Dishes You Can Make</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">BESAN adds taste and nutrition to your favourite recipes</p>
+                </div>
+                <a href="#recipes" class="text-amber-600 dark:text-amber-400 font-semibold text-sm hover:underline flex items-center">
+                    <span>View Recipes</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Recipe Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
+                <!-- Recipe 1 -->
+                <div class="recipe-card group rounded-2xl overflow-hidden bg-amber-50 dark:bg-gray-800 border border-amber-100 dark:border-gray-700 shadow-sm">
+                    <div class="overflow-hidden h-36">
+                        <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80" alt="Besan Chilla" class="w-full h-full object-cover transition duration-300">
+                    </div>
+                    <div class="p-3 text-center">
+                        <h4 class="font-bold text-gray-900 dark:text-white text-sm">Besan Chilla</h4>
+                    </div>
+                </div>
+
+                <!-- Recipe 2 -->
+                <div class="recipe-card group rounded-2xl overflow-hidden bg-amber-50 dark:bg-gray-800 border border-amber-100 dark:border-gray-700 shadow-sm">
+                    <div class="overflow-hidden h-36">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80" alt="Pakora" class="w-full h-full object-cover transition duration-300">
+                    </div>
+                    <div class="p-3 text-center">
+                        <h4 class="font-bold text-gray-900 dark:text-white text-sm">Pakora</h4>
+                    </div>
+                </div>
+
+                <!-- Recipe 3 -->
+                <div class="recipe-card group rounded-2xl overflow-hidden bg-amber-50 dark:bg-gray-800 border border-amber-100 dark:border-gray-700 shadow-sm">
+                    <div class="overflow-hidden h-36">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=400&q=80" alt="Kadhi" class="w-full h-full object-cover transition duration-300">
+                    </div>
+                    <div class="p-3 text-center">
+                        <h4 class="font-bold text-gray-900 dark:text-white text-sm">Kadhi</h4>
+                    </div>
+                </div>
+
+                <!-- Recipe 4 -->
+                <div class="recipe-card group rounded-2xl overflow-hidden bg-amber-50 dark:bg-gray-800 border border-amber-100 dark:border-gray-700 shadow-sm">
+                    <div class="overflow-hidden h-36">
+                        <img src="https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80" alt="Besan Ladoo" class="w-full h-full object-cover transition duration-300">
+                    </div>
+                    <div class="p-3 text-center">
+                        <h4 class="font-bold text-gray-900 dark:text-white text-sm">Besan Ladoo</h4>
+                    </div>
+                </div>
+
+                <!-- Recipe 5 -->
+                <div class="recipe-card group rounded-2xl overflow-hidden bg-amber-50 dark:bg-gray-800 border border-amber-100 dark:border-gray-700 shadow-sm">
+                    <div class="overflow-hidden h-36">
+                        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=400&q=80" alt="Besan Halwa" class="w-full h-full object-cover transition duration-300">
+                    </div>
+                    <div class="p-3 text-center">
+                        <h4 class="font-bold text-gray-900 dark:text-white text-sm">Besan Halwa</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Good Food Healthy Life Banner -->
+            <div id="benefits" class="bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400 dark:from-amber-900 dark:to-gray-900 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between shadow-md">
+                <div class="md:w-2/3 mb-6 md:mb-0 space-y-3">
+                    <h3 class="text-3xl font-black text-gray-900 dark:text-white flex items-center">
+                        Good Food <i data-lucide="leaf" class="w-6 h-6 ml-2 text-emerald-700"></i>
+                    </h3>
+                    <h4 class="text-xl font-bold text-amber-900 dark:text-amber-300">Healthy Life</h4>
+                    <p class="text-sm text-gray-800 dark:text-gray-200 max-w-lg">
+                        BESAN - A natural source of protein, fibre and essential nutrients for you and your family.
+                    </p>
+                    <button class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold px-6 py-2.5 rounded-xl text-sm transition shadow flex items-center space-x-1">
+                        <span>Know More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <div class="md:w-1/3 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Happy Family Cooking" class="rounded-2xl h-48 w-full object-cover shadow-lg border-2 border-white/50">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Footer / Contact / Testimonial Section -->
+    <section id="contact" class="py-16 max-w-7xl mx-auto px-4 md:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            
+            <!-- What Our Customers Say (4 cols) -->
+            <div class="md:col-span-4 bg-amber-50/60 dark:bg-gray-800 rounded-2xl p-6 border border-amber-100 dark:border-gray-700 flex flex-col justify-between shadow-sm">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What Our Customers Say</h3>
+                    <div class="text-amber-400 text-4xl font-serif font-black leading-none mb-2">“</div>
+                    <p id="testimonialQuote" class="text-sm italic text-gray-700 dark:text-gray-300 mb-6">
+                        "Excellent quality besan! The texture is fine and the taste is great. I use it daily for healthy recipes."
+                    </p>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-3 mb-3">
+                        <img id="testimonialImg" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Riya Sharma" class="w-12 h-12 rounded-full object-cover border-2 border-amber-400">
+                        <div>
+                            <h4 id="testimonialName" class="font-bold text-sm text-gray-900 dark:text-white">Riya Sharma</h4>
+                            <div class="flex text-amber-500">
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-2">
+                        <button onclick="prevTestimonial()" class="p-1.5 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-amber-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="nextTestimonial()" class="p-1.5 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-amber-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Send Us a Message Form (5 cols) -->
+            <div class="md:col-span-5 bg-white dark:bg-gray-800 rounded-2xl p-6 border border-amber-100 dark:border-gray-700 shadow-sm">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Send Us a Message</h3>
+                <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Your Name *</label>
+                            <input type="text" required placeholder="Enter your name" class="w-full text-xs px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Your Email *</label>
+                            <input type="email" required placeholder="Enter your email" class="w-full text-xs px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
+                            <input type="tel" placeholder="Enter phone" class="w-full text-xs px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Your Message *</label>
+                            <textarea rows="2" required placeholder="Write message..." class="w-full text-xs px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-sm transition shadow flex items-center justify-center space-x-2">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Get In Touch Info & Map (3 cols) -->
+            <div class="md:col-span-3 bg-amber-50/60 dark:bg-gray-800 rounded-2xl p-6 border border-amber-100 dark:border-gray-700 flex flex-col justify-between shadow-sm">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h3>
+                    <ul class="space-y-3 text-xs text-gray-700 dark:text-gray-300">
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-amber-600"></i>
+                            <span>mohansahu99104492@gmail.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-amber-600"></i>
+                            <span>+91 99104492XX</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-amber-600"></i>
+                            <span>Delhi, India</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-amber-600"></i>
+                            <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+
+                    <div class="flex space-x-3 mt-4 text-amber-600 dark:text-amber-400">
+                        <a href="#" class="p-1.5 rounded-full bg-white dark:bg-gray-700 shadow-sm hover:text-amber-700"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="p-1.5 rounded-full bg-white dark:bg-gray-700 shadow-sm hover:text-amber-700"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="p-1.5 rounded-full bg-white dark:bg-gray-700 shadow-sm hover:text-amber-700"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Map Box Simulation -->
+                <div class="mt-4 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-600 h-24 bg-gray-200 relative">
+                    <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=300&q=80" alt="Location Map" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        <span class="bg-white/90 dark:bg-gray-900/90 text-[10px] font-bold px-2 py-1 rounded shadow text-gray-800 dark:text-white flex items-center">
+                            <i data-lucide="map-pin" class="w-3 h-3 text-red-500 mr-1"></i> Delhi, India
+                        </span>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/919910449226S" target="_blank" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2 rounded-xl text-center shadow flex items-center justify-center space-x-2">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>Chat on WhatsApp</span>
+                </a>
             </div>
 
         </div>
     </section>
 
-
-    <!-- GALLERY -->
-    <section id="gallery">
-
-        <div class="title">
-            <h2>HORROR GALLERY</h2>
-            <p>Explore the darkness...</p>
+    <!-- Footer Copyright -->
+    <footer class="bg-gray-900 text-gray-400 text-xs py-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>© 2026 BESAN - Pure Goodness Always. All Rights Reserved.</p>
         </div>
-
-        <div class="gallery">
-
-            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80">
-
-            <img src="https://images.unsplash.com/photo-1505635552518-3448ff116af3?auto=format&fit=crop&w=800&q=80">
-
-            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80">
-
-            <img src="https://images.unsplash.com/photo-1475070929565-c985b496cb9f?auto=format&fit=crop&w=800&q=80">
-
-            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80">
-
-            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80">
-
-        </div>
-    </section>
-
-
-    <!-- ABOUT -->
-    <section id="about">
-
-        <div class="title">
-            <h2>ABOUT US</h2>
-        </div>
-
-        <div class="about">
-
-            <p>
-                Welcome to Dark Night — a fictional horror-themed website
-                created for lovers of mystery, scary stories and dark
-                atmosphere. Explore our stories, view the gallery and
-                enter the world of darkness.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-    <section id="contact">
-
-        <div class="title">
-            <h2>CONTACT</h2>
-            <p>Send us a message...</p>
-        </div>
-
-        <form>
-
-            <input type="text" placeholder="Your Name" required>
-
-            <input type="email" placeholder="Your Email" required>
-
-            <textarea placeholder="Your Message"></textarea>
-
-            <button type="submit">SEND MESSAGE</button>
-
-        </form>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
-        © 2026 Dark Night | Horror Website
     </footer>
 
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Night - Horror Website</title>
+    <!-- Cart Drawer Modal -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white dark:bg-gray-900 shadow-2xl flex flex-col justify-between p-6">
+                <div>
+                    <div class="flex items-center justify-between border-b pb-4 dark:border-gray-800">
+                        <h2 class="text-xl font-extrabold text-gray-900 dark:text-white flex items-center">
+                            <i data-lucide="shopping-cart" class="w-5 h-5 mr-2 text-amber-500"></i> Your Shopping Cart
+                        </h2>
+                        <button onclick="toggleCartDrawer()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+                    <div id="cartItemsList" class="py-4 space-y-4 max-h-[60vh] overflow-y-auto">
+                        <!-- Cart items will render here dynamically -->
+                        <div class="text-center text-gray-500 py-8">Your cart is empty!</div>
+                    </div>
+                </div>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #050505;
-            color: white;
-        }
-
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            border-bottom: 1px solid #333;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #d00000;
-            text-shadow: 0 0 15px red;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: red;
-            text-shadow: 0 0 10px red;
-        }
-
-        /* HOME */
-        .home {
-            height: 100vh;
-            background:
-                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.85)),
-                url("https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=1920&q=80");
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .home-content h1 {
-            font-size: 75px;
-            color: #fff;
-            text-shadow: 0 0 20px red, 0 0 40px black;
-        }
-
-        .home-content p {
-            font-size: 22px;
-            margin: 20px 0;
-            color: #ddd;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background: #8b0000;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: .3s;
-        }
-
-        .btn:hover {
-            background: red;
-            box-shadow: 0 0 20px red;
-        }
-
-        /* COMMON SECTION */
-        section {
-            padding: 90px 8%;
-            min-height: 80vh;
-        }
-
-        .title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .title h2 {
-            font-size: 45px;
-            color: #d00000;
-            text-shadow: 0 0 15px red;
-        }
-
-        .title p {
-            color: #aaa;
-            margin-top: 10px;
-        }
-
-        /* STORIES */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .card {
-            background: #111;
-            padding: 30px;
-            border: 1px solid #333;
-            border-radius: 10px;
-            transition: .3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: red;
-            box-shadow: 0 0 20px rgba(255,0,0,.3);
-        }
-
-        .card h3 {
-            color: #e00000;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: #aaa;
-            line-height: 1.7;
-        }
-
-        /* GALLERY */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            filter: grayscale(80%);
-            transition: .4s;
-        }
-
-        .gallery img:hover {
-            filter: grayscale(0%);
-            transform: scale(1.04);
-            box-shadow: 0 0 20px red;
-        }
-
-        /* ABOUT */
-        .about {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .about p {
-            color: #aaa;
-            line-height: 2;
-            font-size: 18px;
-        }
-
-        /* CONTACT */
-        form {
-            max-width: 600px;
-            margin: auto;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: #111;
-            color: white;
-            border: 1px solid #444;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        textarea {
-            height: 150px;
-            resize: none;
-        }
-
-        input:focus,
-        textarea:focus {
-            border-color: red;
-            box-shadow: 0 0 10px rgba(255,0,0,.3);
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            background: #8b0000;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background: red;
-            box-shadow: 0 0 15px red;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: #000;
-            color: #777;
-            border-top: 1px solid #222;
-        }
-
-        /* RESPONSIVE */
-        @media(max-width: 800px) {
-
-            nav {
-                padding: 15px 5%;
-            }
-
-            nav ul {
-                gap: 12px;
-            }
-
-            nav ul li a {
-                font-size: 13px;
-            }
-
-            .home-content h1 {
-                font-size: 45px;
-            }
-
-            .cards,
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 70px 5%;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">DARK NIGHT</div>
-
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#stories">Stories</a></li>
-            <li><a href="#gallery">Photos</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-
-    <!-- HOME -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h1>WELCOME TO DARK NIGHT</h1>
-            <p>Enter the world of mystery, darkness and horror...</p>
-
-            <a href="#stories" class="btn">ENTER IF YOU DARE</a>
-        </div>
-    </section>
-
-
-    <!-- STORIES -->
-    <section id="stories">
-
-        <div class="title">
-            <h2>HORROR STORIES</h2>
-            <p>Some stories are better left untold...</p>
-        </div>
-
-        <div class="cards">
-
-            <div class="card">
-                <h3>The Abandoned House</h3>
-                <p>
-                    An old house stood alone at the end of the road.
-                    Nobody entered it after sunset.
-                    But every night, a light appeared in its upper window.
-                </p>
+                <div class="border-t pt-4 dark:border-gray-800">
+                    <div class="flex justify-between items-center text-lg font-bold text-gray-900 dark:text-white mb-4">
+                        <span>Total:</span>
+                        <span id="cartTotalPrice" class="text-amber-600 dark:text-amber-400">₹0</span>
+                    </div>
+                    <button onclick="checkoutCart()" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 rounded-xl shadow transition">
+                        Proceed to Checkout
+                    </button>
+                </div>
             </div>
-
-            <div class="card">
-                <h3>The Dark Forest</h3>
-                <p>
-                    People who entered the forest at night often heard
-                    footsteps behind them. The strange thing was...
-                    nobody was ever there.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>The Midnight Door</h3>
-                <p>
-                    At exactly midnight, a mysterious door appeared
-                    inside an empty room. Nobody knew where it came from.
-                </p>
-            </div>
-
         </div>
-    </section>
+    </div>
 
+    <!-- Toast Notification Element -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-gray-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-amber-400 flex items-center space-x-2 transform translate-y-20 opacity-0 transition duration-300 pointer-events-none">
+        <i data-lucide="check-circle" class="w-5 h-5 text-amber-400"></i>
+        <span id="toastMsg" class="text-sm font-medium">Item added to cart!</span>
+    </div>
 
-    <!-- GALLERY -->
-    <section id="gallery">
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-        <div class="title">
-            <h2>HORROR GALLERY</h2>
-            <p>Explore the darkness...</p>
-        </div>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeToggleText = document.getElementById('themeToggleText');
+        const html = document.documentElement;
 
-        <div class="gallery">
+        themeToggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            themeToggleText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+        });
 
-            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80">
+        // Testimonial Carousel Data
+        const testimonials = [
+            {
+                name: "Riya Sharma",
+                quote: "Excellent quality besan! The texture is fine and the taste is great. I use it daily for healthy recipes.",
+                img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+            },
+            {
+                name: "Amit Patel",
+                quote: "Best gram flour for making pakoras and kadhi. Zero impurities and 100% genuine chana dal flavor!",
+                img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+            },
+            {
+                name: "Pooja Verma",
+                quote: "I ordered the 5kg pack and it arrived very quickly. The packaging is neat and hygienic.",
+                img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+            }
+        ];
+        let currentTestimonialIndex = 0;
 
-            <img src="https://images.unsplash.com/photo-1505635552518-3448ff116af3?auto=format&fit=crop&w=800&q=80">
+        function updateTestimonial() {
+            const data = testimonials[currentTestimonialIndex];
+            document.getElementById('testimonialQuote').innerText = `"${data.quote}"`;
+            document.getElementById('testimonialName').innerText = data.name;
+            document.getElementById('testimonialImg').src = data.img;
+        }
 
-            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80">
+        function nextTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            updateTestimonial();
+        }
 
-            <img src="https://images.unsplash.com/photo-1475070929565-c985b496cb9f?auto=format&fit=crop&w=800&q=80">
+        function prevTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+            updateTestimonial();
+        }
 
-            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80">
+        // Shopping Cart State
+        let cart = [];
 
-            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80">
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('hidden');
+        }
 
-        </div>
-    </section>
+        function addToCart(title, price) {
+            const existingItem = cart.find(item => item.title === title);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ title, price, qty: 1 });
+            }
+            renderCart();
+            showToast(`Added ${title} to cart!`);
+        }
 
+        function updateQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            renderCart();
+        }
 
-    <!-- ABOUT -->
-    <section id="about">
+        function renderCart() {
+            const cartList = document.getElementById('cartItemsList');
+            const cartCountBadge = document.getElementById('cartCountBadge');
+            const cartTotalPrice = document.getElementById('cartTotalPrice');
 
-        <div class="title">
-            <h2>ABOUT US</h2>
-        </div>
+            let totalQty = 0;
+            let totalPrice = 0;
 
-        <div class="about">
+            if (cart.length === 0) {
+                cartList.innerHTML = '<div class="text-center text-gray-500 py-8">Your cart is empty!</div>';
+            } else {
+                cartList.innerHTML = cart.map((item, index) => {
+                    totalQty += item.qty;
+                    totalPrice += item.price * item.qty;
+                    return `
+                        <div class="flex justify-between items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-xl">
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-900 dark:text-white">${item.title}</h4>
+                                <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold">₹${item.price} x ${item.qty}</div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="updateQty(${index}, -1)" class="w-6 h-6 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold flex items-center justify-center">-</button>
+                                <span class="text-xs font-bold">${item.qty}</span>
+                                <button onclick="updateQty(${index}, 1)" class="w-6 h-6 rounded bg-amber-400 text-gray-900 font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
 
-            <p>
-                Welcome to Dark Night — a fictional horror-themed website
-                created for lovers of mystery, scary stories and dark
-                atmosphere. Explore our stories, view the gallery and
-                enter the world of darkness.
-            </p>
+            cartCountBadge.innerText = totalQty;
+            cartTotalPrice.innerText = `₹${totalPrice}`;
+        }
 
-        </div>
+        function checkoutCart() {
+            if (cart.length === 0) {
+                showToast("Cart is empty!");
+                return;
+            }
+            showToast("Order placed successfully! Thank you.");
+            cart = [];
+            renderCart();
+            toggleCartDrawer();
+        }
 
-    </section>
+        // Contact Form Submission Handler
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast("Message sent successfully!");
+            document.getElementById('contactForm').reset();
+        }
 
+        // Toast Notification Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = msg;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
 
-    <!-- CONTACT -->
-    <section id="contact">
-
-        <div class="title">
-            <h2>CONTACT</h2>
-            <p>Send us a message...</p>
-        </div>
-
-        <form>
-
-            <input type="text" placeholder="Your Name" required>
-
-            <input type="email" placeholder="Your Email" required>
-
-            <textarea placeholder="Your Message"></textarea>
-
-            <button type="submit">SEND MESSAGE</button>
-
-        </form>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
-        © 2026 Dark Night | Horror Website
-    </footer>
-
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
